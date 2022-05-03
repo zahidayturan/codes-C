@@ -1,14 +1,16 @@
 #include <stdio.h>
 
 int main(){
-	int sayi,i,sonuc=1;
+	float sayi;
+	float sonuc=1;
+	int i;
 	
 	printf("Faktoriyel alinmasini istediginiz sayi : ");
-	scanf("%d",&sayi);
+	scanf("%f",&sayi);
 
 	for(int i=2; i<=sayi ; i++)     
 		sonuc = sonuc * i; 
 
-	printf("%d sayisinin faktoriyeli : %d\n", sayi,sonuc); 
+	printf("%f sayisinin faktoriyeli : %f\n", sayi,sonuc); 
     return 0;
 }
