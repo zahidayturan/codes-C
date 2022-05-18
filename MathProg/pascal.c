@@ -1,6 +1,7 @@
 // Pascal’s Triangle
 
 #include <stdio.h>
+
 void Pascal(int n) 
 { 
     int arr[n][n];  
