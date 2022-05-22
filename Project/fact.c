@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+//0 fakt =1
 int main(){
 	int sayi,i,sonuc=1;
 	
