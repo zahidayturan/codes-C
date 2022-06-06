@@ -1,0 +1,2 @@
+Tüm dosyalar tek derleme alıyor. 
+https://roktas.dev/classroom/c-1/lectures/#stack-c
