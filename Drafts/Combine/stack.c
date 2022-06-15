@@ -45,3 +45,5 @@ void flush(void)
         while (--sp >= 0)
                 printf("%d: %f\n", sp, stack[sp]);
 }
+
+//cc -o stack getnum.c stack.c main.c && ./stack
