@@ -18,7 +18,7 @@ typedef struct n node;
      root -> next -> next -> x=30;
      node * iter;
      iter = root;
-     printf("%d \n", iter -> x);
+     printf("%d ", iter -> x);
      iter = iter -> next;
      printf("%d", iter -> x);
 }
