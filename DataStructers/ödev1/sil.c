@@ -61,7 +61,6 @@ struct rehber *sil(){
     struct rehber *ekiter;
     struct rehber *ek2iter;
     //iter = first;
-
     if(first == NULL){
         printf("Liste boş!\n");
         return first;
@@ -70,9 +69,8 @@ struct rehber *sil(){
     char *silinecekad[MAX_LEN];
     printf("Silinecek Kişinin Adını Giriniz: ");
     scanf("%s",&silinecekad);
-    
-    if (first->next==NULL)
-    {
+
+    if (first->next==NULL){
        if(strcmp(first -> ad, silinecekad)==0){
         printf("Listenin tek elemanı olan %s silindi. Artık liste boş.\n",silinecekad);
         ekiter = first;
@@ -80,7 +78,7 @@ struct rehber *sil(){
         iter =NULL;
         free(ekiter);
         return first;
-        } 
+        }
     }
 
     if (first->next->next==NULL)
@@ -92,14 +90,14 @@ struct rehber *sil(){
         iter = first;
         free(ekiter);
         return first;
-        } 
+        }
         if(strcmp(first-> next -> ad, silinecekad)==0){
         printf("Listede bulunan %s silindi. Listede bir kişi kaldı.\n",silinecekad);
         ekiter = first->next;
         free(ekiter);
         first ->next =NULL;
         return first;
-        } 
+        }
     }
     
     while (iter != NULL){
@@ -112,11 +110,19 @@ struct rehber *sil(){
             free(ekiter);
             return first;
         }
+        else{
+            printf("Silmek istediğiniz kişi '%s' yok!\n",silinecekad);
+            return first;
+        }
             if ((iter->next->next == NULL)&&(strcmp(iter->next-> ad, silinecekad)==0)){
             printf("Silindi2 %s\n",silinecekad);
             ekiter = iter ->next;
             free(ekiter);
             iter -> next = NULL;
+            return first;
+        }
+        else{
+            printf("Silmek istediğiniz kişi '%s' yok!\n",silinecekad);
             return first;
         }
             if (strcmp(iter -> next -> ad, silinecekad)==0){
@@ -128,17 +134,11 @@ struct rehber *sil(){
             ek2iter ->next = iter;
             return first;
         }
-        //}
-    iter = iter->next;
-    }
-    struct rehber *ek3iter =first;
-    while (ek3iter != NULL)
-    {
-        if (strcmp(ek3iter->ad, silinecekad)!=0){
-            printf("Aradığınız kişi '%s' bulunamadı.",silinecekad);
-            break;
+        else{
+            printf("Silmek istediğiniz kişi '%s' yok!\n",silinecekad);
+            return first;
         }
-        ek3iter = ek3iter -> next;
+    iter = iter->next;
     }
 }
 
