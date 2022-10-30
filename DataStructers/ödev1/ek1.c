@@ -1,3 +1,6 @@
+// İsmet Zahid AYTURAN - 21060607 - OMÜ Bilgisayar Müh.
+// Veri Yapıları Dersi Bağlı Liste ile Rehber Yapma Ödevi
+//30.10.2022
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,9 +17,7 @@ struct rehber{
 struct rehber *first= NULL;
 
 struct rehber *yeni(){
-    return(
-        (struct rehber *)malloc(sizeof(struct rehber))
-        );
+    return((struct rehber *)malloc(sizeof(struct rehber)));
 }
 
 struct rehber *ekle(){
@@ -49,13 +50,16 @@ struct rehber *ekle(){
         yenilenecek -> next= NULL;
         yazdir(first);
         }
-};
+}
 
 void yazdir(struct rehber *first){
     struct rehber *iter;
     iter = first;
     int i =1;
-    printf("------------------------REHBER-------------------------\n");
+    printf("-----------------------------REHBER------------------------------\n");
+    if (iter == NULL){
+        printf("!!! Rehber BOŞ!\n");}
+    
     while(iter != NULL){
         printf("%d--> AD: %s - SOYAD: %s - TEL NO: %s - e-MAİL: %s \n", i, iter->ad, iter->soyad, iter->tel, iter->mail);
 		iter = iter -> next;
@@ -70,9 +74,8 @@ struct rehber *sil(){
     struct rehber *ek2iter;
 
     if(first == NULL){
-        printf("Liste boş!\n");
-        return first;
-    }
+        printf("!!! Liste boş!\n");
+        return first;  }
 
     char *silinecekad[MAX_LEN];
     printf("Silinecek Kişinin Adını Giriniz: ");
@@ -80,7 +83,7 @@ struct rehber *sil(){
     char *silineceksoyad[MAX_LEN];
     printf("Silinecek Kişinin Soyadını Giriniz: ");
     scanf("%s",&silineceksoyad);
-    
+
     if (first->next==NULL){
        if((strcmp(first->ad, silinecekad)==0)&&(strcmp(first->soyad, silineceksoyad)==0)){
         printf("Listenin tek elemanı olan %s %s silindi. Artık liste boş.\n",silinecekad, silineceksoyad);
@@ -89,6 +92,10 @@ struct rehber *sil(){
         iter =NULL;
         free(ekiter);
         return first;
+        }
+        else{
+            printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+            return first;
         } 
     }
 
@@ -100,14 +107,21 @@ struct rehber *sil(){
                 iter = first;
                 free(ekiter);
             return first;
-        } 
+        }
+            else{
+                printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+                return first;
+            }   
             if((strcmp(first->next->ad, silinecekad)==0)&&(strcmp(first->next->soyad, silineceksoyad)==0)){
                 printf("Rehberde bulunan %s %s silindi. Rehberde bir kişi kaldı.\n",silinecekad, silineceksoyad);
                 ekiter = first->next;
                 free(ekiter);
                 first ->next =NULL;
             return first;
-        } 
+        }
+            else{
+                printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+                return first;    } 
     }
     
     while (iter != NULL){
@@ -119,6 +133,10 @@ struct rehber *sil(){
                 free(ekiter);
             return first;
         }
+            else{
+                printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+                return first;
+            }
             if ((iter->next->next == NULL)&&((strcmp(iter->next-> ad, silinecekad)==0)&&(strcmp(iter->next->soyad, silineceksoyad)==0))){
                 printf("Rehberde bulunan %s %s silindi.\n",silinecekad,silineceksoyad);
                 ekiter = iter ->next;
@@ -126,6 +144,10 @@ struct rehber *sil(){
                 iter -> next = NULL;
             return first;
         }
+            else{
+            printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+            return first;
+            }
             if ((strcmp(iter->next -> ad, silinecekad)==0)&&(strcmp(iter->next -> soyad, silineceksoyad)==0)){
                 printf("Rehberde bulunan %s %s silindi.\n",silinecekad,silineceksoyad);
                 ekiter = iter ->next;
@@ -135,16 +157,11 @@ struct rehber *sil(){
                 free(ekiter);
             return first;
         }
+            else{
+            printf("!!! Silmek istediğiniz kişi '%s %s' yok!\n",silinecekad,silineceksoyad);
+            return first;
+            }
     iter = iter->next;
-    }
-
-    struct rehber *ek3iter=first;
-    while (ek3iter != NULL){
-        if ((strcmp(ek3iter->ad, silinecekad)!=0)&&(strcmp(ek3iter->ad, silinecekad)!=0)){
-            printf("Silmek istediğiniz kişi '%s %s' rehberde bulunamadı.",silinecekad,silineceksoyad);
-            break;
-        }
-        ek3iter = ek3iter->next;
     }
 }
 
@@ -157,7 +174,7 @@ void bul(){
         printf("Aranacak Soyadı girin: ");
         scanf("%s",&bulunucaksoyad);
     if (first == NULL){
-        printf("Liste boş.");
+        printf("!!! Liste boş!");
     }
     else{
         while (iter != NULL){
@@ -166,7 +183,7 @@ void bul(){
                 printf(" AD: %s - SOYAD: %s - TEL NO: %s - e-MAİL: %s \n", iter->ad, iter->soyad, iter->tel, iter->mail);
             }
             else{
-                printf("Aradığınız Kişi Bulunamadı\n");
+                printf("!!! Aradığınız Kişi Bulunamadı\n");
                 break;
             }
             iter = iter ->next;
@@ -182,8 +199,7 @@ int main(){
         printf("İşlemi seçiniz:");
         scanf("%d",&dhz);
         
-        switch(dhz)
-        {
+        switch(dhz){
             case 1:
                 ekle();
             break;
@@ -198,8 +214,7 @@ int main(){
             break;
             default: printf("Yanlış Girdiniz. ");
         }
-        printf("Devam etmek isterseniz 1, Çıkmak için 0 :\n ");
-        scanf("%d",&zhd);
+        printf("Devam etmek isterseniz 1, Çıkmak için 0 :\n ");  scanf("%d",&zhd);
     }while(zhd!=0); 
 return 0;
 }
