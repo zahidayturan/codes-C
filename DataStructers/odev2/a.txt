@@ -1,0 +1,8 @@
+<html>
+<head>
+<title> BİL Veri Yapıları </title>
+</head>
+<body>
+<p style="font-size:12px" > <a href="http://omu.edu.tr" > OMÜ </a> </p>
+</body>
+</html>
